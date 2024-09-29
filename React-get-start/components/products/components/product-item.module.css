@@ -1,0 +1,10 @@
+.btnStyle {
+    background-color: black;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+.productTitle {
+    font-size: 20px;
+    color: rgb(18, 94, 94);
+}
