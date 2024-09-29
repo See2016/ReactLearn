@@ -5,6 +5,7 @@ import ContexButtonComponent from './components/context-concept/button'
 import ContextTextComponent from './components/context-concept/text'
 import FunctionComponent from './components/function-component'
 import ProductList from './components/products/index'
+import UseReducerExample from './components/use-reducer-example'
 import Users from './components/users'
 
 const productData = ['p1', 'p2', 'p3']
@@ -18,8 +19,10 @@ function App() {
         {/* <ProductList ProductData={productData} name="See" city="PSU" /> */}
         {/* <Users /> */}
 
-        <ContexButtonComponent />
-        <ContextTextComponent />
+        {/* <ContexButtonComponent />
+        <ContextTextComponent /> */}
+
+        <UseReducerExample />
     </div>
   )
 }
