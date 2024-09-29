@@ -2,7 +2,7 @@
 import './App.css'
 import ClassBase from './components/class-component'
 import FunctionComponent from './components/function-component'
-import ProductList from './components/products'
+import ProductList from './components/products/index'
 
 const productData = ['p1', 'p2', 'p3']
 
@@ -10,9 +10,9 @@ function App() {
   return (
     <div>
         <h1>Hello</h1>
-        <ClassBase />
+        {/* <ClassBase /> */}
         {/* <FunctionComponent /> */}
-        {/* <ProductList ProductData={productData} name="See" city="PSU" /> */}
+        <ProductList ProductData={productData} name="See" city="PSU" />
     </div>
   )
 }

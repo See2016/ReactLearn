@@ -1,46 +1,70 @@
+import { useEffect, useState } from "react";
 import ProductItem from "./components/product-items";
 import "./style.css";
 
-function ProductList({name, city, ProductData}) { // 2
-  // console.log(props) // 1
-  // const {name, city} = props;
+const initialState = true;
 
-  // ------------- render part --------------
-  const flag = true;
-  // function renderText(getFlag) {
-  //   return  getFlag ? <h4>Name {name}, City {city}</h4> : <h4>This is false</h4>
-  // }
-  const renderText = flag ? (<h4>Name {name}, City {city}</h4>) : (<h4>This is false</h4>)
-  // let renderText = null;
-  // if(flag) {
-  //   renderText = (<h4>Name {name}, City {city}</h4>)
-  // } else {
-  //   renderText = (<h4>This is false</h4>)
-  // }
+function ProductList({ name, city, listOfProducts }) {
+  const [flag, setFlag] = useState(initialState);
+  const [count, setCount] = useState(0);
+  const [changeStyle, setChangeStyle] = useState(false);
+
+  function handleToggleText() {
+    setFlag(!flag);
+  }
+
+  function handleIncreaseCount() {
+    setCount(count + 1);
+  }
+
+  useEffect(() => {
+    setFlag(!flag);
+    console.log("run only once page load");
+
+    return () => {
+      console.log("component is unmounted -> some side effects here also");
+    };
+  }, []); // this will only run on page load once
+
+  useEffect(() => {
+    if (count === 10) setChangeStyle(true);
+  }, [count]); // check on the change state of count
+
+  console.log(changeStyle);
 
   return (
     <div>
-      <h3 className="title">Ecomerce Project</h3>
+      <h3 className="title">ECommerce Project</h3>
+      <button onClick={handleToggleText}>Toggle Text</button>
       {/* <ProductItem /> */}
+      {flag ? (
+        <h4>
+          {name} and {city}
+        </h4>
+      ) : (
+        <h4>Hello</h4>
+      )}
 
-      {/* -------- render part ------------ */}
-      {/* {
-        flag ? (<h4>Name {name}, City {city}</h4>)
-        : (<h4>This is false</h4>)
-      } */}
-      {/* {renderText(flag)} */}
-      {renderText}
+      <div>
+        <button
+          style={{
+            backgroundColor: changeStyle ? "black" : "white",
+            color: changeStyle ? "#ffffff" : "#000000",
+          }}
+          onClick={handleIncreaseCount}
+        >
+          Increase Count
+        </button>
+        <p>Count is {count}</p>
+      </div>
 
-      {/* <h4>Name {name}, City {city}</h4> */} {/* // 2 */}
       <ul>
-        {/* {productData.map((item, index) => ( */} {/* 1 */}
-        {ProductData.map((item, index) => (
-            // <li key={index}>{item}</li> // 1
-            <ProductItem sigleProductItem={item} key={index} />
+        {listOfProducts.map((item, index) => (
+          <ProductItem singleProductItem={item} key={index} />
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
-export default ProductList
+export default ProductList;
